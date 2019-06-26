@@ -1,6 +1,24 @@
 const User = require("../models/user")
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken")
+
+exports.users_login = (req,res,next) => {
+    User.find({email: req.body.email})
+    .exec()
+    .then(user =>{
+        if(user.length<1){
+            return res.status(404).json({
+                message: "Auth failed"
+            });
+        } else {
+            return res.status(200).json({
+                message: "Auth successful",
+                token: "12345"
+            });
+        }
+    })
+}
 
 exports.users_get_all = (req,res,next) => {
     User.find()

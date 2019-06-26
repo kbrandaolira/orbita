@@ -73,7 +73,7 @@ class NewAccount extends React.Component {
           },
           (error) => {
               console.log(error);
-              alert("Sorry. We had a problem when tried to save data.")
+              alert(properties.msg_generic_error);
           }
       )
   }
