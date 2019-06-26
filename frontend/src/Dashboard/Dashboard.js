@@ -2,7 +2,9 @@ import React from 'react';
 import '../Dashboard/Dashboard.css';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import Card from '../Card/Card';
+import InstallationsMade from '../InstallationsMade/InstallationsMade';
+import HigherCostInstallation from '../HigherCostInstallation/HigherCostInstallation';
+import ThreeMonthsHigherInstallations from '../ThreeMonthsHigherInstallations/ThreeMonthsHigherInstallations';
 
 class Dashboard extends React.Component {
     render() {
@@ -11,13 +13,13 @@ class Dashboard extends React.Component {
             <Header/>
             <div className="row widgets">
                 <div className="col-md-4">
-                    <Card title="Installations Made" description="Here we will present the installations made!"/>
+                    <InstallationsMade/>
                 </div>
                 <div className="col-md-4">
-                    <Card title="Higher Cost Installation" description="Here we will present the installation with higher cost!"/>
+                    <HigherCostInstallation/>
                 </div>
                 <div className="col-md-4">
-                    <Card title="Three Months Higher Installations" description="Here we will present the three months with higher installations!"/>
+                    <ThreeMonthsHigherInstallations/>
                 </div>
             </div>
             <Footer/>

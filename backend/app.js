@@ -22,7 +22,7 @@ app.use(function(req, res, next) {
 
 // Routes which should handle requests
 app.use("/users", userRoutes);
-app.use("/orders", installationRoutes);
+app.use("/installations", installationRoutes);
 
 app.use((req,res,next)=>{
     const error = new Error("Not found");
