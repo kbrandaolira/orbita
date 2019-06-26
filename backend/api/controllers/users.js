@@ -1,5 +1,6 @@
 const User = require("../models/user")
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
 exports.users_get_all = (req,res,next) => {
     User.find()
@@ -17,23 +18,35 @@ exports.users_get_all = (req,res,next) => {
 }
 
 exports.user_create = (req,res,next) => {
-    const newUser = new User({
-        _id: new mongoose.Types.ObjectId(),
-        name: req.body.name,
-        password: req.body.password,
-        email: req.body.email,
-        state: req.body.state
+    bcrypt.hash(req.body.password, 10, (err, hash)=>{
+        if(err){
+            return res.status(500).json({
+                error: err
+            })
+        } else {
+            // save in database 
+            const newUser = new User({
+                _id: new mongoose.Types.ObjectId(),
+                name: req.body.name,
+                password: hash,
+                email: req.body.email,
+                state: req.body.state
+            });
+            newUser.save()
+            .then(result=>{
+                console.log(result);
+                res.status(201).json({
+                    message: "User created",
+                    userCreated: user
+                })
+            }) 
+            .catch(err =>{
+                res.status(500).json({
+                    error: err
+                })
+            });
+        }
     });
-    newUser.save()
-    .then(result =>{
-        console.log(result);
-        res.status(201).json(result);
-    })
-    .catch(err =>{
-        console.log(err);
-        res.status(500).json(err);
-    })
-
 }
 
 exports.user_delete = (req,res,next) => {
