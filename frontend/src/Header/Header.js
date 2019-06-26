@@ -7,6 +7,7 @@ class Header extends React.Component {
         <div>   
             <nav class="navbar fixed-top navbar-light bg-light">
                 <a class="navbar-brand" href="#"><img className="logo" src="/img/orbita_logo.png"/></a>
+                <a href="#">Logout</a>
             </nav>
         </div>
       )

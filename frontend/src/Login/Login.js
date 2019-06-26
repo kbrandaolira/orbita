@@ -4,8 +4,14 @@ import NewAccount from '../NewAccount/NewAccount';
 import { properties } from '../properties'
 import $ from 'jquery';
 import helpers from '../helpers';
+import Dashboard from '../Dashboard/Dashboard';
 
 class Login extends React.Component {
+    
+    constructor(props) {
+        super(props);
+    }
+
     render() {
       return (
         <div className="wrapper fadeInDown">
@@ -39,7 +45,7 @@ class Login extends React.Component {
             (result) => {
                 console.log(result);
                 if(result.token != null){
-                    alert("Login");
+                    this.props.history.push('/Dashboard');
                 } else {
                     alert(result.message);    
                 }
