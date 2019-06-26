@@ -21,7 +21,8 @@ exports.user_create = (req,res,next) => {
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
         password: req.body.password,
-        email: req.body.email
+        email: req.body.email,
+        state: req.body.state
     });
     newUser.save()
     .then(result =>{

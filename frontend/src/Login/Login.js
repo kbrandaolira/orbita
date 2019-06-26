@@ -1,5 +1,6 @@
 import React from 'react';
 import '../Login/Login.css';
+import NewAccount from '../NewAccount/NewAccount';
 
 class Login extends React.Component {
     render() {
@@ -15,7 +16,7 @@ class Login extends React.Component {
                     <input type="submit" className="fadeIn fourth" value="Log In"></input>
                 </form>
                 <div id="formFooter">
-                    <a className="underlineHover" href="#">Create New Account</a>
+                    <NewAccount/>
                 </div>
             </div>  
         </div>
