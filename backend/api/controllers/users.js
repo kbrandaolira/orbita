@@ -6,15 +6,35 @@ const jwt = require("jsonwebtoken");
 exports.users_login = (req, res, next) => {
   User.find({ email: req.body.email })
     .exec()
-    .then(user => {
-      if (user.length < 1) {
+    .then(users => {
+      if (users.length < 1) {
         return res.status(404).json({
           message: "Auth failed"
         });
       } else {
-        return res.status(200).json({
-          message: "Auth successful",
-          token: "12345"
+        bcrypt.compare(req.body.password, users[0].password, function(
+          err,
+          match
+        ) {
+          if (match) {
+            // 1 hour to expire token
+            var token = jwt.sign(
+              {
+                exp: Math.floor(Date.now() / 1000) + (60 * 60),
+                userId: users[0]._id
+              },
+              'secret'
+            );
+            console.log(token);
+            return res.status(200).json({
+              message: "Auth successful",
+              token: token
+            });
+          } else {
+            return res.status(404).json({
+              message: "Auth failed"
+            });
+          }
         });
       }
     });
