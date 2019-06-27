@@ -6,37 +6,38 @@ const jwt = require("jsonwebtoken");
 exports.users_login = (req, res, next) => {
   User.find({ email: req.body.email })
     .exec()
-    .then(users => {
-      if (users.length < 1) {
+    .then(user => {
+      if (user.length < 1) {
         return res.status(404).json({
           message: "Auth failed"
         });
-      } else {
-        bcrypt.compare(req.body.password, users[0].password, function(
-          err,
-          match
-        ) {
-          if (match) {
-            // 1 hour to expire token
-            var token = jwt.sign(
-              {
-                exp: Math.floor(Date.now() / 1000) + (60 * 60),
-                userId: users[0]._id
-              },
-              'secret'
-            );
-            return res.status(200).json({
-              message: "Auth successful",
-              token: token,
-              userId: users[0]._id
-            });
-          } else {
-            return res.status(404).json({
-              message: "Auth failed"
-            });
-          }
-        });
       }
+      bcrypt.compare(req.body.password, user[0].password, (err, match) => {
+        if (err) {
+          return res.status(404).json({
+            message: "Auth failed"
+          });
+        }
+        if (match) {
+          var token = jwt.sign(
+            {
+              exp: Math.floor(Date.now() / 1000) + 60 * 60,
+              userId: user[0]._id
+            },
+            "secret"
+          );
+
+          return res.status(200).json({
+            message: "Auth successful",
+            token: token,
+            userId: user[0]._id
+          });
+        }
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ error: err });
     });
 };
 
@@ -62,7 +63,6 @@ exports.user_create = (req, res, next) => {
         error: err
       });
     } else {
-      // save in database
       const newUser = new User({
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,

@@ -4,7 +4,7 @@ import NewAccount from "../NewAccount/NewAccount";
 import { properties } from "../../properties";
 import $ from "jquery";
 import helpers from "../../helpers";
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 import { setToken, TOKEN_KEY } from "../../auth";
 
 class Login extends React.Component {
@@ -35,7 +35,7 @@ class Login extends React.Component {
               placeholder="password"
             />
             <input
-              onClick={this.handleSubmit}
+              onClick={this.handleSubmit.bind(this)}
               type="submit"
               className="fadeIn fourth"
               value="Log In"
@@ -49,7 +49,9 @@ class Login extends React.Component {
     );
   }
 
-  handleSubmit() {
+  handleSubmit(e) {
+    e.preventDefault();
+
     fetch(properties.api_url_login, {
       method: "POST",
       body: helpers.serializeFormJSON($("#login-form").serializeArray()),
@@ -62,6 +64,7 @@ class Login extends React.Component {
         result => {
           if (result.token != null) {
             setToken(result.token);
+            this.props.history.push("/dashboard");
           } else {
             alert(result.message);
           }
