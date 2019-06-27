@@ -7,6 +7,8 @@ class HigherCostInstallation extends React.Component {
   constructor(){
     super();
     this.state = {
+        error: null,
+        isLoaded: false,
         installation: []
     }
   }
@@ -17,20 +19,35 @@ class HigherCostInstallation extends React.Component {
       .then(
           (result) => {
               this.setState({
+                  isLoaded: true,
                   installation: result.installation
+              });
+          },
+          (error) => {
+              this.setState({
+                  isLoaded: true,
+                  error: error
               });
           }
       )
   }
 
   render() {
-    const { installation } = this.state;
+    const { error, isLoaded, installation } = this.state;
+    let title = "Higher Cost Installation";
 
-    return (
-      <div>
-          <Card title="Higher Cost Installation" description={"$" + installation.cost}/>
-      </div>
-    )
+    if(error){
+        return <Card title={title} description={error.message}/>
+    } else if(!isLoaded){
+        return <Card title={title} description={[<img src="/img/loading.gif"/>]}/>
+    } else {
+        return (
+            <div>
+                <Card title={title} description={"$" + installation.cost}/>
+            </div>
+        )
+    }
+
   }
 
 }

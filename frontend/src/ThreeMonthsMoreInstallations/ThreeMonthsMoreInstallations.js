@@ -6,6 +6,8 @@ class ThreeMonthsMoreInstallations extends React.Component {
     constructor(){
         super();
         this.state = {
+            error: null,
+            isLoaded: false,
             description: ""
         }
     }
@@ -31,19 +33,34 @@ class ThreeMonthsMoreInstallations extends React.Component {
                 }
 
                 this.setState({
+                    isLoaded: true,
                     description: text
+                });
+            },
+            (error) => {
+                this.setState({
+                    isLoaded: true,
+                    error: error
                 });
             }
         )
     }
 
     render() {
-        const { description } = this.state;
-        return (
-            <div>
-                <Card title="Three Months with More Installations" description={description}/>
-            </div>
-        )
+        const { error, isLoaded, description } = this.state;
+        let title = "Three Months with More Installations";
+
+        if(error){
+            return <Card title={title} description={error.message}/>
+        } else if(!isLoaded){
+            return <Card title={title} description={[<img src="/img/loading.gif"/>]}/>
+        } else {
+            return (
+                <div>
+                    <Card title={title} description={description}/>
+                </div>
+            )
+        }
     }
 
   }

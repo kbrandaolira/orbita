@@ -6,6 +6,8 @@ class InstallationsMade extends React.Component {
     constructor(){
         super();
         this.state = {
+            error: null,
+            isLoaded: false,
             installations: []
         }
     }
@@ -17,19 +19,33 @@ class InstallationsMade extends React.Component {
         .then(
             (result) => {
                 this.setState({
+                    isLoaded: true,
                     installations: result
+                });
+            },
+            (error) => {
+                this.setState({
+                    isLoaded: true,
+                    error: error
                 });
             }
         )
     }
 
     render() {
-        const { installations } = this.state;
-        return (
-            <div>
-                <Card title="Installation(s) Made" description={installations.count}/>
-            </div>
-        )
+        const { error, isLoaded, installations } = this.state;
+        let title = "Installation(s) Made";
+        if(error){
+            return <Card title={title} description={error.message}/>
+        } else if(!isLoaded){
+            return <Card title={title} description={[<img src="/img/loading.gif"/>]}/>
+        } else {
+            return (
+                <div>
+                    <Card title={title} description={installations.count}/>
+                </div>
+            )
+        }
     }
 
   }
