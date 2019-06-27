@@ -1,4 +1,5 @@
 import React from "react";
+import { logout } from '../../auth';
 
 class Header extends React.Component {
   render() {
@@ -8,7 +9,7 @@ class Header extends React.Component {
           <a className="navbar-brand" href="#">
             <img className="logo" src="/img/orbita_logo.png" />
           </a>
-          <a href="#">Logout</a>
+          <a onClick={logout} href="#">Logout</a>
         </nav>
       </div>
     );

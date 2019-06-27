@@ -4,6 +4,8 @@ import NewAccount from "../NewAccount/NewAccount";
 import { properties } from "../../properties";
 import $ from "jquery";
 import helpers from "../../helpers";
+import { withRouter } from "react-router-dom";
+import { setToken, TOKEN_KEY } from "../../auth";
 
 class Login extends React.Component {
   constructor(props) {
@@ -59,7 +61,7 @@ class Login extends React.Component {
       .then(
         result => {
           if (result.token != null) {
-            localStorage.setItem('token', result.token);
+            setToken(result.token);
           } else {
             alert(result.message);
           }
@@ -72,4 +74,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);

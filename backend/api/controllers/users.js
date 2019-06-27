@@ -25,10 +25,10 @@ exports.users_login = (req, res, next) => {
               },
               'secret'
             );
-            console.log(token);
             return res.status(200).json({
               message: "Auth successful",
-              token: token
+              token: token,
+              userId: users[0]._id
             });
           } else {
             return res.status(404).json({
