@@ -1,5 +1,4 @@
 import React from 'react';
-import '../NewAccount/NewAccount.css';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { properties } from '../properties'
 import $ from 'jquery';

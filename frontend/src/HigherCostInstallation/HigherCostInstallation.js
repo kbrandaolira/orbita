@@ -1,55 +1,54 @@
-import React from 'react';
-import Card from '../Card/Card';
-import {properties} from '../properties';
+import React from "react";
+import Card from "../Card/Card";
+import { properties } from "../properties";
 
 class HigherCostInstallation extends React.Component {
-    
-  constructor(){
+  constructor() {
     super();
     this.state = {
-        error: null,
-        isLoaded: false,
-        installation: []
-    }
+      error: null,
+      isLoaded: false,
+      installation: []
+    };
   }
 
   componentDidMount() {
-      fetch(properties.api_url_installations_higher_cost)
+    fetch(properties.api_url_installations_higher_cost)
       .then(res => res.json())
       .then(
-          (result) => {
-              this.setState({
-                  isLoaded: true,
-                  installation: result.installation
-              });
-          },
-          (error) => {
-              this.setState({
-                  isLoaded: true,
-                  error: error
-              });
-          }
-      )
+        result => {
+          this.setState({
+            isLoaded: true,
+            installation: result.installation
+          });
+        },
+        error => {
+          this.setState({
+            isLoaded: true,
+            error: error
+          });
+        }
+      );
   }
 
   render() {
     const { error, isLoaded, installation } = this.state;
     let title = "Higher Cost Installation";
 
-    if(error){
-        return <Card title={title} description={error.message}/>
-    } else if(!isLoaded){
-        return <Card title={title} description={[<img src="/img/loading.gif"/>]}/>
+    if (error) {
+      return <Card title={title} description={error.message} />;
+    } else if (!isLoaded) {
+      return (
+        <Card title={title} description={[<img src="/img/loading.gif" />]} />
+      );
     } else {
-        return (
-            <div>
-                <Card title={title} description={"$" + installation.cost}/>
-            </div>
-        )
+      return (
+        <div>
+          <Card title={title} description={"$" + installation.cost} />
+        </div>
+      );
     }
-
   }
-
 }
 
 export default HigherCostInstallation;
