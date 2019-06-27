@@ -4,5 +4,6 @@ export const properties ={
     api_url_new_account: "http://localhost:3001/users",
     api_url_login: "http://localhost:3001/users/login",
     api_url_installations: "http://localhost:3001/installations",
-    api_url_installations_higher_cost: "http://localhost:3001/installations/higher-cost"
+    api_url_installations_higher_cost: "http://localhost:3001/installations/higher-cost",
+    api_url_installations_by_month: "http://localhost:3001/installations/by-month"
 }

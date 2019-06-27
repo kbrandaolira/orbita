@@ -4,7 +4,7 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import InstallationsMade from '../InstallationsMade/InstallationsMade';
 import HigherCostInstallation from '../HigherCostInstallation/HigherCostInstallation';
-import ThreeMonthsHigherInstallations from '../ThreeMonthsHigherInstallations/ThreeMonthsHigherInstallations';
+import ThreeMonthsMoreInstallations from '../ThreeMonthsMoreInstallations/ThreeMonthsMoreInstallations';
 
 class Dashboard extends React.Component {
     render() {
@@ -19,7 +19,7 @@ class Dashboard extends React.Component {
                     <HigherCostInstallation/>
                 </div>
                 <div className="col-md-4">
-                    <ThreeMonthsHigherInstallations/>
+                    <ThreeMonthsMoreInstallations/>
                 </div>
             </div>
             <Footer/>

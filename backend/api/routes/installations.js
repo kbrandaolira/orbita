@@ -10,4 +10,6 @@ router.get("/", InstallationController.installations_get_all);
 
 router.get("/higher-cost", InstallationController.installations_higher_cost);
 
+router.get("/by-month", InstallationController.installations_by_month);
+
 module.exports = router;
