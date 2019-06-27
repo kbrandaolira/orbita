@@ -27,7 +27,7 @@ class InstallationsMade extends React.Component {
         const { installations } = this.state;
         return (
             <div>
-                <Card title={installations.count} description="Installation(s) were made since begin"/>
+                <Card title="Installation(s) Made" description={installations.count}/>
             </div>
         )
     }

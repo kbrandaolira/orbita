@@ -28,7 +28,7 @@ class HigherCostInstallation extends React.Component {
 
     return (
       <div>
-          <Card title={"$" + installation.cost} description="Was the Higher Cost Installation"/>
+          <Card title="Higher Cost Installation" description={"$" + installation.cost}/>
       </div>
     )
   }
