@@ -6,7 +6,7 @@ const InstallationController = require("../controllers/installations");
 // Handle incoming GET requests to /orders
 //router.get("/", checkAuth, InstallationController.some_method);
 
-router.get("/", InstallationController.installations_get_all);
+router.get("/count", InstallationController.installations_count);
 
 router.get("/higher-cost", InstallationController.installations_higher_cost);
 

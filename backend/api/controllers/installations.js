@@ -2,14 +2,13 @@ const Installation = require("../models/installation")
 const mongoose = require("mongoose");
 const InstallationsByMonthDTO = require('../dto/InstallationsByMonthDTO')
 
-exports.installations_get_all = (req,res,next) => {
+exports.installations_count = (req,res,next) => {
     Installation.find()
-    .select("_id dataProvider systemSize installationDate zipCode state cost")
+    .count()
     .exec()
-    .then(docs => {
+    .then(result => {
         res.status(200).json({
-            count: docs.length,
-            installations: docs
+            count: result
         });
     })
     .catch(err =>{
@@ -35,10 +34,9 @@ exports.installations_higher_cost = (req,res,next) => {
 
 exports.installations_by_month = (req,res,next) => {
     Installation.find()
-    .sort({"installationDate": 1})
     .exec()
     .then(docs => {
-        console.log("a");
+
         january = new InstallationsByMonthDTO('january', 0); 
         february = new InstallationsByMonthDTO('february', 0); 
         march = new InstallationsByMonthDTO('march', 0); 
@@ -51,31 +49,33 @@ exports.installations_by_month = (req,res,next) => {
         october = new InstallationsByMonthDTO('october', 0); 
         november = new InstallationsByMonthDTO('november', 0); 
         december = new InstallationsByMonthDTO('december', 0);
-        console.log("b");
+
         for( i=0; i<docs.length; i++ ){
-            if( docs[i].installationDate.getMonth() == 0) {
+            let arr = docs[i].installationDate.split('/');
+
+            if( arr[0] == 1) {
                 january.add();
-            } else if( docs[i].installationDate.getMonth() == 1) {
+            } else if( arr[0] == 2) {
                 february.add();
-            } else if( docs[i].installationDate.getMonth() == 2) {
+            } else if( arr[0] == 3) {
                 march.add();
-            } else if( docs[i].installationDate.getMonth() == 3) {
+            } else if( arr[0] == 4) {
                 april.add();
-            } else if( docs[i].installationDate.getMonth() == 4) {
+            } else if( arr[0] == 5) {
                 may.add();
-            } else if( docs[i].installationDate.getMonth() == 5) {
+            } else if( arr[0] == 6) {
                 june.add();
-            } else if( docs[i].installationDate.getMonth() == 6) {
+            } else if( arr[0] == 7) {
                 july.add();
-            } else if( docs[i].installationDate.getMonth() == 7) {
+            } else if( arr[0] == 8) {
                 august.add();
-            } else if( docs[i].installationDate.getMonth() == 8) {
+            } else if( arr[0] == 9) {
                 september.add();
-            } else if( docs[i].installationDate.getMonth() == 9) {
+            } else if( arr[0] == 10) {
                 october.add();
-            } else if( docs[i].installationDate.getMonth() == 10) {
+            } else if( arr[0] == 11) {
                 november.add();
-            } else if( docs[i].installationDate.getMonth() == 11) {
+            } else if( arr[0] == 12) {
                 december.add();
             }
         }
