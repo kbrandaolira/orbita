@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "../Card/Card";
 import { properties } from "../../properties";
-import { getToken } from "../../auth";
+import { getToken, getUserId } from "../../auth";
 
 class ThreeMonthsMoreInstallations extends React.Component {
   constructor() {
@@ -14,9 +14,9 @@ class ThreeMonthsMoreInstallations extends React.Component {
   }
 
   componentDidMount() {
-    fetch(properties.api_url_installations_by_month, {
+    fetch(properties.api_url_installations_by_month + "/" + getUserId(getToken()), {
       headers: {
-        'Authorization': getToken()
+        Authorization: getToken()
       }
     })
       .then(res => res.json())

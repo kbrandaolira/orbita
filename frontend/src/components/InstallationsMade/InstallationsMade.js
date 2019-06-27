@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "../Card/Card";
 import { properties } from "../../properties";
-import { getToken } from "../../auth";
+import { getToken, getUserId } from "../../auth";
 
 class InstallationsMade extends React.Component {
   constructor() {
@@ -14,9 +14,9 @@ class InstallationsMade extends React.Component {
   }
 
   componentDidMount() {
-    fetch(properties.api_url_installations, {
+    fetch(properties.api_url_installations + "/" + getUserId(getToken()), {
       headers: {
-        'Authorization': getToken()
+        Authorization: getToken()
       }
     })
       .then(res => res.json())
@@ -48,7 +48,7 @@ class InstallationsMade extends React.Component {
     } else {
       return (
         <div>
-          <Card title={title} description={installations.count} />
+          <Card title={title} description={"State " + installations.state + ": " + installations.count} />
         </div>
       );
     }

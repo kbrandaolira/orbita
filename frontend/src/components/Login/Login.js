@@ -5,7 +5,7 @@ import { properties } from "../../properties";
 import $ from "jquery";
 import helpers from "../../helpers";
 import { withRouter } from "react-router-dom";
-import { setToken, isAuthenticated } from "../../auth";
+import { setToken, isAuthenticated, setUserId } from "../../auth";
 
 class Login extends React.Component {
   constructor(props) {
@@ -70,6 +70,7 @@ class Login extends React.Component {
         result => {
           if (result.token != null) {
             setToken(result.token);
+            setUserId(result.token,result.userId);
             this.props.history.push("/dashboard");
           } else {
             alert(result.message);
