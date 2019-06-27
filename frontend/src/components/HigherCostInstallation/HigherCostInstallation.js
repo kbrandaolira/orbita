@@ -1,25 +1,25 @@
 import React from "react";
 import Card from "../Card/Card";
-import { properties } from "../properties";
+import { properties } from "../../properties";
 
-class InstallationsMade extends React.Component {
+class HigherCostInstallation extends React.Component {
   constructor() {
     super();
     this.state = {
       error: null,
       isLoaded: false,
-      installations: []
+      installation: []
     };
   }
 
   componentDidMount() {
-    fetch(properties.api_url_installations)
+    fetch(properties.api_url_installations_higher_cost)
       .then(res => res.json())
       .then(
         result => {
           this.setState({
             isLoaded: true,
-            installations: result
+            installation: result.installation
           });
         },
         error => {
@@ -32,8 +32,9 @@ class InstallationsMade extends React.Component {
   }
 
   render() {
-    const { error, isLoaded, installations } = this.state;
-    let title = "Installation(s) Made";
+    const { error, isLoaded, installation } = this.state;
+    let title = "Higher Cost Installation";
+
     if (error) {
       return <Card title={title} description={error.message} />;
     } else if (!isLoaded) {
@@ -43,11 +44,11 @@ class InstallationsMade extends React.Component {
     } else {
       return (
         <div>
-          <Card title={title} description={installations.count} />
+          <Card title={title} description={"$" + installation.cost} />
         </div>
       );
     }
   }
 }
 
-export default InstallationsMade;
+export default HigherCostInstallation;

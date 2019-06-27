@@ -1,6 +1,6 @@
 import React from "react";
-import Login from "./Login/Login";
-import Dashboard from "./Dashboard/Dashboard";
+import Login from "./components/Login/Login";
+import Dashboard from "./components/Dashboard/Dashboard";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 
 function App() {

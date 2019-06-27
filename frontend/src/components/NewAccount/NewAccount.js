@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { properties } from '../properties'
+import { properties } from '../../properties'
 import $ from 'jquery';
-import helpers from '../helpers';
+import helpers from '../../helpers';
 
 class NewAccount extends React.Component {
   constructor(props) {

@@ -1,5 +1,5 @@
 import React from "react";
-import "../Dashboard/Dashboard.css";
+import "./Dashboard.css";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import InstallationsMade from "../InstallationsMade/InstallationsMade";

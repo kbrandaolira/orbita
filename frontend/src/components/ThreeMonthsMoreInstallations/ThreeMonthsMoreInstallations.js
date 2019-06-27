@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "../Card/Card";
-import { properties } from "../properties";
+import { properties } from "../../properties";
 
 class ThreeMonthsMoreInstallations extends React.Component {
   constructor() {

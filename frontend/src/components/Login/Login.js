@@ -1,10 +1,9 @@
 import React from "react";
-import "../Login/Login.css";
+import "./Login.css";
 import NewAccount from "../NewAccount/NewAccount";
-import { properties } from "../properties";
+import { properties } from "../../properties";
 import $ from "jquery";
-import helpers from "../helpers";
-import Dashboard from "../Dashboard/Dashboard";
+import helpers from "../../helpers";
 
 class Login extends React.Component {
   constructor(props) {
@@ -59,9 +58,8 @@ class Login extends React.Component {
       .then(res => res.json())
       .then(
         result => {
-          console.log(result);
           if (result.token != null) {
-            this.props.history.push("/Dashboard");
+            localStorage.setItem('token', result.token);
           } else {
             alert(result.message);
           }
