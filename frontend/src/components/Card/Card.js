@@ -7,9 +7,9 @@ class Card extends React.Component {
 
   render() {
     return (
-      <div className="card">
+      <div className="card bg-light mb-3">
+        <div class="card-header">{this.props.title}</div>
         <div className="card-body">
-          <h5 className="card-title">{this.props.title}</h5>
           <p className="card-text">{this.props.description}</p>
         </div>
       </div>

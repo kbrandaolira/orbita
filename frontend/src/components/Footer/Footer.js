@@ -7,7 +7,7 @@ class Footer extends React.Component {
       <div>
         <footer className="footer">
           <div className="container">
-            <span className="text-muted">Developed by Kayan Lira</span>
+            <span className="text-footer">Developed by Kayan Lira</span>
           </div>
         </footer>
       </div>

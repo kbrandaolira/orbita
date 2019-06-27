@@ -4,12 +4,18 @@ import NewAccount from "../NewAccount/NewAccount";
 import { properties } from "../../properties";
 import $ from "jquery";
 import helpers from "../../helpers";
-import { withRouter, Redirect } from "react-router-dom";
-import { setToken, TOKEN_KEY } from "../../auth";
+import { withRouter } from "react-router-dom";
+import { setToken, isAuthenticated } from "../../auth";
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount(){
+    if( isAuthenticated() ){
+      this.props.history.push("/dashboard");
+    }
   }
 
   render() {

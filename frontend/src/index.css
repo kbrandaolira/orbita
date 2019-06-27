@@ -8,6 +8,10 @@ body {
   background-color: #282c34 !important;
 }
 
+a{
+  color:#42426F!important;
+}
+
 .btn-submit {
   background-color: #56baed !important;
   border: #56baed !important;
