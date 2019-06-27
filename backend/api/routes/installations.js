@@ -8,4 +8,6 @@ const InstallationController = require("../controllers/installations");
 
 router.get("/", InstallationController.installations_get_all);
 
+router.get("/higher-cost", InstallationController.installations_higher_cost);
+
 module.exports = router;

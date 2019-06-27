@@ -15,3 +15,19 @@ exports.installations_get_all = (req,res,next) => {
         res.status(500).json(err);
     });
 }
+
+exports.installations_higher_cost = (req,res,next) => {
+    Installation.find()
+    .select("cost")
+    .sort({"cost": -1})
+    .limit(1)
+    .exec()
+    .then(docs => {
+        res.status(200).json({
+            installation: docs[0]
+        });
+    })
+    .catch(err =>{
+        res.status(500).json(err);
+    });
+}
