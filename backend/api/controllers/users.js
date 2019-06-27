@@ -24,9 +24,8 @@ exports.users_login = (req, res, next) => {
               exp: Math.floor(Date.now() / 1000) + 60 * 60,
               userId: user[0]._id
             },
-            "secret"
+            'secret'
           );
-
           return res.status(200).json({
             message: "Auth successful",
             token: token,

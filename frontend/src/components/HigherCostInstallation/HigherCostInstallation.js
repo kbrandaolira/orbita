@@ -1,6 +1,8 @@
 import React from "react";
 import Card from "../Card/Card";
 import { properties } from "../../properties";
+import "../../auth";
+import { getToken } from "../../auth";
 
 class HigherCostInstallation extends React.Component {
   constructor() {
@@ -13,7 +15,11 @@ class HigherCostInstallation extends React.Component {
   }
 
   componentDidMount() {
-    fetch(properties.api_url_installations_higher_cost)
+    fetch(properties.api_url_installations_higher_cost, {
+      headers: {
+        'Authorization': getToken()
+      }
+    })
       .then(res => res.json())
       .then(
         result => {

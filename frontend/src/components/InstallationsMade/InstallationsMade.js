@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "../Card/Card";
 import { properties } from "../../properties";
+import { getToken } from "../../auth";
 
 class InstallationsMade extends React.Component {
   constructor() {
@@ -13,7 +14,11 @@ class InstallationsMade extends React.Component {
   }
 
   componentDidMount() {
-    fetch(properties.api_url_installations)
+    fetch(properties.api_url_installations, {
+      headers: {
+        'Authorization': getToken()
+      }
+    })
       .then(res => res.json())
       .then(
         result => {
