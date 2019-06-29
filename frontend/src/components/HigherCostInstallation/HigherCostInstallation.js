@@ -15,11 +15,16 @@ class HigherCostInstallation extends React.Component {
   }
 
   componentDidMount() {
-    fetch(properties.api_url_installations_higher_cost + "/" + getUserId(getToken()), {
-      headers: {
-        Authorization: getToken()
+    fetch(
+      properties.api_url_installations_higher_cost +
+        "/" +
+        getUserId(getToken()),
+      {
+        headers: {
+          Authorization: getToken()
+        }
       }
-    })
+    )
       .then(res => res.json())
       .then(
         result => {
@@ -50,7 +55,17 @@ class HigherCostInstallation extends React.Component {
     } else {
       return (
         <div>
-          <Card title={title} description={"Zip Code " + installation.zipCode + ": $ " + installation.cost} />
+          <Card
+            title={title}
+            description={
+              installation != null
+                ? "Zip Code " +
+                  installation.zipCode +
+                  ": $ " +
+                  installation.cost
+                : properties.msg_not_found
+            }
+          />
         </div>
       );
     }

@@ -48,7 +48,14 @@ class InstallationsMade extends React.Component {
     } else {
       return (
         <div>
-          <Card title={title} description={"State " + installations.state + ": " + installations.count} />
+          <Card
+            title={title}
+            description={
+              installations.length > 0
+                ? "State " + installations.state + ": " + installations.count
+                : properties.msg_not_found
+            }
+          />
         </div>
       );
     }
