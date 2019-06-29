@@ -22,10 +22,9 @@
 
 ### `post /users/login`
 
-Content-Type: 'application-json'
-
 Exemplo de Resposta:
 
+```json
 {
     "count": 2,
     "users": [
@@ -43,6 +42,7 @@ Exemplo de Resposta:
         }
     ]
 }
+```
 
 ### `get /users`
 
