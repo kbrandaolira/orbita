@@ -22,10 +22,35 @@
 
 ### `post /users/login`
 
-Exemplo de Resposta:
+Exemplo de Requisição:
 
 ```json
+{
+	"email":"kbrandaolira@gmail.com",
+	"password":"12345678"
+}
 ```
+
+Exemplo de Resposta de Sucesso:
+
+```json
+{
+    "message": "Auth successful",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NjE4Mzg1MzYsInVzZXJJZCI6IjVkMTJkMjM3MTJjNTc5MDM3ODJmMTgyYyIsImlhdCI6MTU2MTgzNDkzNn0.A3HHPNhk0cDhl7Xk3xkwyKVtCDVEKhr7ugS3LuyUwPg",
+    "userId": "5d12d23712c57903782f182c"
+}
+```
+
+Exemplo de Resposta de Falha:
+
+```json
+{
+    "message": "Auth failed"
+}
+```
+
+Exemplo de Resposta de Falha:
+
 
 ### `get /users`
 
@@ -70,21 +95,26 @@ Exemplo de Resposta:
 {
     "message": "User created",
     "userCreated": {
-        "_id": "5d17b379461fe72cb85ac95f",
+        "_id": "5d12d23712c57903782f182c",
         "name": "Kayan Brandão Lira",
         "password": "$2b$10$hp5AIQD8TU14i4mocCb0Butaw91YZG2I68FJJziIXdikCdL7g837G",
         "email": "kbrandaolira@gmail.com",
-        "state": "RJ",
+        "state": "CA",
         "__v": 0
     }
 }
 ```
 
-### `get /users/:userId
+### `delete /users/:userId
 
 Exemplo de Resposta:
 
 ```json
+{
+    "n": 1,
+    "ok": 1,
+    "deletedCount": 1
+}
 ```
 
 ### `get /installations/count/:userId`
