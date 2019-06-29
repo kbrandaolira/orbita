@@ -63,7 +63,7 @@ class HigherCostInstallation extends React.Component {
                   installation.zipCode +
                   ": $ " +
                   installation.cost
-                : properties.msg_not_found
+                : "$ 0.00"
             }
           />
         </div>

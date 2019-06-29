@@ -51,9 +51,7 @@ class InstallationsMade extends React.Component {
           <Card
             title={title}
             description={
-              installations.length > 0
-                ? "State " + installations.state + ": " + installations.count
-                : properties.msg_not_found
+              "State " + installations.state + ": " + installations.count
             }
           />
         </div>
