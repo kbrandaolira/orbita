@@ -25,7 +25,7 @@ class ThreeMonthsMoreInstallations extends React.Component {
       .then(res => res.json())
       .then(
         result => {
-          if (result.months.length > 0) {
+          if (result.months != null && result.months.length > 0) {
             result.months.sort((a, b) =>
               a.count > b.count ? 1 : b.count > a.count ? -1 : 0
             );
@@ -49,6 +49,11 @@ class ThreeMonthsMoreInstallations extends React.Component {
             this.setState({
               isLoaded: true,
               description: text
+            });
+          } else {
+            this.setState({
+              isLoaded: true,
+              description: properties.msg_not_found
             });
           }
         },

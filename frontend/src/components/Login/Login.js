@@ -48,7 +48,7 @@ class Login extends React.Component {
             />
           </form>
           <div id="formFooter">
-            <NewAccount />
+            <NewAccount obj={this} />
           </div>
         </div>
       </div>
