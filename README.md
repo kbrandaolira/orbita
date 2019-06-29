@@ -25,6 +25,13 @@
 Exemplo de Resposta:
 
 ```json
+```
+
+### `get /users`
+
+Exemplo de Resposta:
+
+```json
 {
     "count": 2,
     "users": [
@@ -44,17 +51,62 @@ Exemplo de Resposta:
 }
 ```
 
-### `get /users`
-
 ### `post /users`
+
+Exemplo de Requisição:
+
+```json
+{
+	"name":"Kayan Brandão Lira",
+	"email":"kbrandaolira@gmail.com",
+	"password":"12345678",
+	"state":"CA"
+}
+```
+
+Exemplo de Resposta:
+
+```json
+{
+    "message": "User created",
+    "userCreated": {
+        "_id": "5d17b379461fe72cb85ac95f",
+        "name": "Kayan Brandão Lira",
+        "password": "$2b$10$hp5AIQD8TU14i4mocCb0Butaw91YZG2I68FJJziIXdikCdL7g837G",
+        "email": "kbrandaolira@gmail.com",
+        "state": "RJ",
+        "__v": 0
+    }
+}
+```
 
 ### `get /users/:userId
 
+Exemplo de Resposta:
+
+```json
+```
+
 ### `get /installations/count/:userId`
+
+Exemplo de Resposta:
+
+```json
+```
 
 ### `get /installations/higher-cost/:userId`
 
+Exemplo de Resposta:
+
+```json
+```
+
 ### `get /installations/by-month/:userId`
+
+Exemplo de Resposta:
+
+```json
+```
 
 ## Frontend: Componentes Existentes
 
