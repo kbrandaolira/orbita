@@ -22,7 +22,11 @@
 
 ### `post /users/login`
 
-Exemplo de Requisição:
+**Descrição:**
+
+Serviço responsável pelo login do usuário, recebe os parâmetros email e password.
+
+**Exemplo de Requisição:**
 
 ```json
 {
@@ -31,7 +35,7 @@ Exemplo de Requisição:
 }
 ```
 
-Exemplo de Resposta de Sucesso:
+**Exemplo de Resposta de Sucesso:**
 
 ```json
 {
@@ -41,7 +45,7 @@ Exemplo de Resposta de Sucesso:
 }
 ```
 
-Exemplo de Resposta de Falha:
+**Exemplo de Resposta de Falha:**
 
 ```json
 {
@@ -49,12 +53,13 @@ Exemplo de Resposta de Falha:
 }
 ```
 
-Exemplo de Resposta de Falha:
-
-
 ### `get /users`
 
-Exemplo de Resposta:
+**Descrição:**
+
+Serviço responsável por trazer todos os usuários da aplicação.
+
+**Exemplo de Resposta:**
 
 ```json
 {
@@ -78,7 +83,11 @@ Exemplo de Resposta:
 
 ### `post /users`
 
-Exemplo de Requisição:
+**Descrição:**
+
+Serviço responsável por criar um novo usário.
+
+**Exemplo de Requisição:**
 
 ```json
 {
@@ -89,7 +98,7 @@ Exemplo de Requisição:
 }
 ```
 
-Exemplo de Resposta:
+**Exemplo de Resposta:**
 
 ```json
 {
@@ -105,9 +114,13 @@ Exemplo de Resposta:
 }
 ```
 
-### `delete /users/:userId
+### `delete /users/:userId`
 
-Exemplo de Resposta:
+**Descrição:**
+
+Serviço responsável por excluir um usuário através do id passado pela url.
+
+**Exemplo de Resposta:**
 
 ```json
 {
@@ -119,23 +132,110 @@ Exemplo de Resposta:
 
 ### `get /installations/count/:userId`
 
-Exemplo de Resposta:
+**Descrição:**
+
+Serviço responsável por trazer o número total de instalações do estado do usuário logado.
+
+**Observação:**
+
+Necessário adicionar Authorization no Header com o token de autenticação recebido no get /users/login.
+
+**Exemplo de Resposta:**
 
 ```json
+{
+    "count": 44218,
+    "state": "CA"
+}
 ```
 
 ### `get /installations/higher-cost/:userId`
 
-Exemplo de Resposta:
+**Descrição:**
+
+Serviço responsável por trazer CEP e a instalação mais cara com seu valor do estado do usuário logado.
+
+**Observação:**
+
+Necessário adicionar Authorization no Header com o token de autenticação recebido no get /users/login.
+
+**Exemplo de Resposta:**
 
 ```json
+{
+    "installation": {
+        "_id": "5d141dbfea500b4cae87e958",
+        "zipCode": "90026",
+        "cost": 999.8804775
+    }
+}
 ```
 
 ### `get /installations/by-month/:userId`
 
-Exemplo de Resposta:
+**Descrição:**
+
+Serviço responsável por trazer o número de instalações por mês do estado do usuário logado.
+
+**Observação:**
+
+Necessário adicionar Authorization no Header com o token de autenticação recebido no get /users/login.
+
+**Exemplo de Resposta:**
 
 ```json
+{
+    "months": [
+        {
+            "month": "january",
+            "count": 4117
+        },
+        {
+            "month": "february",
+            "count": 3092
+        },
+        {
+            "month": "march",
+            "count": 3660
+        },
+        {
+            "month": "april",
+            "count": 3381
+        },
+        {
+            "month": "may",
+            "count": 3306
+        },
+        {
+            "month": "june",
+            "count": 3377
+        },
+        {
+            "month": "july",
+            "count": 3730
+        },
+        {
+            "month": "august",
+            "count": 3608
+        },
+        {
+            "month": "september",
+            "count": 3843
+        },
+        {
+            "month": "october",
+            "count": 4387
+        },
+        {
+            "month": "november",
+            "count": 3774
+        },
+        {
+            "month": "december",
+            "count": 3943
+        }
+    ]
+}
 ```
 
 ## Frontend: Componentes Existentes
