@@ -2,23 +2,59 @@
 
 ### `Como rodar o projeto?`
 
-1- Instale o Node (https://nodejs.org/en/download/)
+1- Instale o Node (https://nodejs.org/en/download/).
 
-2- Instale o Github (https://desktop.github.com/)
+2- Instale o Github (https://desktop.github.com/).
 
-3- Instale o Mongo DB (https://www.mongodb.com/download-center#community)
+3- Instale o Mongo DB (https://www.mongodb.com/download-center#community).
 
-4- Clone o Projeto através da URL https://github.com/kbrandaolira/orbita.git
+4- Clone o Projeto através da URL https://github.com/kbrandaolira/orbita.git.
 
 5- Crie uma base de dados chamada orbita
 
-6- Importe o arquivo solar_data.json que está dentro da pasta /backend/db_import (Utilizei o programa Studio 3T (https://studio3t.com/) pois tive problema ao tentar importar pelo Mongo Compass)
+6- Importe o arquivo solar_data.json que está dentro da pasta /backend/db_import (Utilizei o programa Studio 3T (https://studio3t.com/) pois tive problema ao tentar importar pelo Mongo Compass).
 
-7- A conexão com o banco de dados é feita no arquivo app.js e a senha está no arquivo nodemon.js, ambas dentro da pasta /backend
+7- A conexão com o banco de dados é feita no arquivo app.js e a senha está no arquivo nodemon.js, ambas dentro da pasta /backend.
 
-8- Acesse as pastas de backend (porta 3001) e frontend (porta 3001) e rode o comando npm start para subir os projetos
+8- Acesse as pastas de backend (porta 3001) e frontend (porta 3000) e rode o comando npm start para subir os projetos.
 
 ## Backend: API
+
+### `post /users/login`
+
+Content-Type: 'application-json'
+
+Exemplo de Resposta:
+
+{
+    "count": 2,
+    "users": [
+        {
+            "_id": "5d12d23712c57903782f182c",
+            "name": "KAYAN BRANDAO LIRA",
+            "password": "$2b$10$GbpOSxEog34ywViKdLS3C.pxAm3UnWf3NjhPSJ9Am7lQJZeyaa4fq",
+            "email": "kbrandaolira@gmail.com"
+        },
+        {
+            "_id": "5d151f2ba98d7936445b4711",
+            "name": "Natacha Salvador",
+            "password": "$2b$10$zFnivKMAze1E0TT22TRhR.kM.Ud2/1xPOjnTN8F0gBQL7cTXmaL3S",
+            "email": "ncastelhano@gmail.com"
+        }
+    ]
+}
+
+### `get /users`
+
+### `post /users`
+
+### `get /users/:userId
+
+### `get /installations/count/:userId`
+
+### `get /installations/higher-cost/:userId`
+
+### `get /installations/by-month/:userId`
 
 ## Frontend: Componentes Existentes
 
