@@ -44,7 +44,7 @@ class Login extends React.Component {
             <input
               onClick={this.handleSubmit.bind(this)}
               type="submit"
-              className="fadeIn fourth"
+              className="fadeIn fourth btn-submit"
               value="Log In"
             />
           </form>
