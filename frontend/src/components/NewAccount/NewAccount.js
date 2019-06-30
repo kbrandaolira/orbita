@@ -3,7 +3,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { properties } from "../../properties";
 import $ from "jquery";
 import helpers from "../../helpers";
-import { login } from '../../actions/users';
+import { login } from "../../actions/users";
 
 class NewAccount extends React.Component {
   constructor(props) {
@@ -43,7 +43,7 @@ class NewAccount extends React.Component {
                   maxLength="100"
                   type="text"
                   className="form-control"
-                  id="name"
+                  id="new-name"
                 />
               </div>
               <div className="form-group">
@@ -53,7 +53,7 @@ class NewAccount extends React.Component {
                   maxLength="100"
                   type="text"
                   className="form-control"
-                  id="email"
+                  id="new-email"
                 />
               </div>
               <div className="form-group">
@@ -63,7 +63,7 @@ class NewAccount extends React.Component {
                   maxLength="100"
                   type="text"
                   className="form-control"
-                  id="state"
+                  id="new-state"
                 />
               </div>
               <div className="form-group">
@@ -73,7 +73,7 @@ class NewAccount extends React.Component {
                   maxLength="100"
                   type="password"
                   className="form-control"
-                  id="password"
+                  id="new-password"
                 />
               </div>
               <div className="form-group">
@@ -83,7 +83,7 @@ class NewAccount extends React.Component {
                   maxLength="100"
                   type="password"
                   className="form-control"
-                  id="repeatPassword"
+                  id="new-repeatPassword"
                 />
               </div>
             </ModalBody>
@@ -105,40 +105,60 @@ class NewAccount extends React.Component {
     );
   }
 
+  validate() {
+    let messages = [];
+    if ($("#new-password").val() != $("#new-repeatPassword").val()) {
+      messages.push("Password doesn't match.");
+    } else if (
+      $.trim($("#new-name").val()) == "" ||
+      $.trim($("#new-email").val()) == "" ||
+      $.trim($("#new-state").val()) == "" ||
+      $.trim($("#new-password").val()) == ""
+    ) {
+      messages.push("All fields are required.");
+    }
+    return messages;
+  }
+
   handleSubmit(e) {
-    fetch(properties.api_url_new_account, {
-      method: "POST",
-      body: helpers.serializeFormJSON($("#user-form").serializeArray()),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-      .then(res => res.json())
-      .then(
-        result => {
-          console.log(result);
-          $("#close-btn").click();
-          fetch(properties.api_url_login, {
-            method: "POST",
-            body: helpers.serializeFormJSON($("#user-form").serializeArray()),
-            headers: {
-              "Content-Type": "application/json"
-            }
-          })
-            .then(res2 => res2.json())
-            .then(result2 => {
-              login(result2);
-            })
-            .catch(err => {
-              console.log(err);
-              alert(properties.msg_generic_error);
-            });
-        },
-        error => {
-          console.log(error);
-          alert(properties.msg_generic_error);
+    let messages = this.validate();
+    if (messages.length == 0) {
+      fetch(properties.api_url_new_account, {
+        method: "POST",
+        body: helpers.serializeFormJSON($("#user-form").serializeArray()),
+        headers: {
+          "Content-Type": "application/json"
         }
-      );
+      })
+        .then(res => res.json())
+        .then(
+          result => {
+            console.log(result);
+            $("#close-btn").click();
+            fetch(properties.api_url_login, {
+              method: "POST",
+              body: helpers.serializeFormJSON($("#user-form").serializeArray()),
+              headers: {
+                "Content-Type": "application/json"
+              }
+            })
+              .then(res2 => res2.json())
+              .then(result2 => {
+                login(result2);
+              })
+              .catch(err => {
+                console.log(err);
+                alert(properties.msg_generic_error);
+              });
+          },
+          error => {
+            console.log(error);
+            alert(properties.msg_generic_error);
+          }
+        );
+    } else {
+      alert(messages);
+    }
   }
 }
 
