@@ -5,7 +5,8 @@ import { properties } from "../../properties";
 import $ from "jquery";
 import helpers from "../../helpers";
 import { withRouter } from "react-router-dom";
-import { setToken, isAuthenticated, setUserId } from "../../auth";
+import { isAuthenticated } from "../../auth";
+import { login } from '../../actions/users';
 
 class Login extends React.Component {
   constructor(props) {
@@ -68,13 +69,7 @@ class Login extends React.Component {
       .then(res => res.json())
       .then(
         result => {
-          if (result.token != null) {
-            setToken(result.token);
-            setUserId(result.token,result.userId);
-            this.props.history.push("/dashboard");
-          } else {
-            alert(result.message);
-          }
+          login(result);
         },
         error => {
           console.log(error);

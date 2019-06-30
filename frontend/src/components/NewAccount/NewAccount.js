@@ -3,7 +3,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { properties } from "../../properties";
 import $ from "jquery";
 import helpers from "../../helpers";
-import { setToken, setUserId } from "../../auth";
+import { login } from '../../actions/users';
 
 class NewAccount extends React.Component {
   constructor(props) {
@@ -127,9 +127,7 @@ class NewAccount extends React.Component {
           })
             .then(res2 => res2.json())
             .then(result2 => {
-              setToken(result2.token);
-              setUserId(result2.token, result2.userId);
-              window.location.reload();
+              login(result2);
             })
             .catch(err => {
               console.log(err);
